@@ -6,6 +6,8 @@
 package Form;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import rmi_login.Detail_Impl;
 
 /**
  *
@@ -30,6 +34,24 @@ public class Form_showDetails extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         showTable1();
+        
+        Timer timer  = new Timer(0, null);
+        timer.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                  showTable1();
+                 try {
+                     Detail_Impl di =  new Detail_Impl();
+                     di.sendEmail();
+                 } catch (RemoteException ex) {
+                     Logger.getLogger(Form_showDetails.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }
+        });
+       timer.setRepeats(true);
+       timer.setDelay(30000); // repeat every 30 sec
+       timer.start();
     }
 
     /**
@@ -45,15 +67,6 @@ public class Form_showDetails extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        lblshowFloor = new javax.swing.JLabel();
-        JT_showFloor = new javax.swing.JTextField();
-        btn_insert = new javax.swing.JButton();
-        lblshowRoom = new javax.swing.JLabel();
-        JT_showRoom = new javax.swing.JTextField();
-        JT_showCo2Lvl1 = new javax.swing.JTextField();
-        lblCo2Lvl1 = new javax.swing.JLabel();
-        lblmokeLvl1 = new javax.swing.JLabel();
-        JT_showSmokeLvl1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTableShowStatus = new javax.swing.JTable();
 
@@ -83,36 +96,6 @@ public class Form_showDetails extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblshowFloor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblshowFloor.setText("Floor");
-
-        JT_showFloor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-
-        btn_insert.setBackground(new java.awt.Color(1, 152, 117));
-        btn_insert.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btn_insert.setForeground(new java.awt.Color(255, 255, 255));
-        btn_insert.setText("Insert");
-        btn_insert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_insertActionPerformed(evt);
-            }
-        });
-
-        lblshowRoom.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblshowRoom.setText("Room");
-
-        JT_showRoom.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-
-        JT_showCo2Lvl1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-
-        lblCo2Lvl1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblCo2Lvl1.setText("CO2 Level");
-
-        lblmokeLvl1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblmokeLvl1.setText("Smoke Level");
-
-        JT_showSmokeLvl1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         JTableShowStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,59 +135,16 @@ public class Form_showDetails extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblshowFloor)
-                            .addComponent(lblshowRoom))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JT_showRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JT_showFloor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCo2Lvl1)
-                            .addComponent(lblmokeLvl1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JT_showCo2Lvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JT_showSmokeLvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(btn_insert)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblshowFloor)
-                            .addComponent(JT_showFloor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblshowRoom)
-                            .addComponent(JT_showRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCo2Lvl1)
-                            .addComponent(JT_showCo2Lvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblmokeLvl1)
-                            .addComponent(JT_showSmokeLvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(btn_insert)
-                .addGap(34, 34, 34))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -236,49 +176,11 @@ public class Form_showDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
-        try {
-            String floor = JT_showFloor.getText();
-            String room = JT_showRoom.getText();
-            String co2 = JT_showFloor.getText();
-            String smoke =  JT_showRoom.getText();
-            String status;
-            
-           
-            /*check the satus and smoke*/
-            if(Integer.parseInt(co2) > 5 || Integer.parseInt(smoke) > 5){
-                    status = "Active";
-            }else{
-                    status = "Deactive";
-            }
-            /*connect to the db*/
-            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
-            
-            java.sql.Statement st = con.createStatement();
-            
-            /*SQL Query*/
-            String sql = "insert into level (Floor,Room,Co2,Smoke,Status) value('"+floor+"','"+room+"','"+co2+"','"+smoke+"','"+status+"')";
-            st.executeUpdate(sql);   
-            JOptionPane.showMessageDialog(null, "Successfully Inserted!");
-           
-            /*calling method to show the db table*/
-            showTable1();
-            
-            /*if the co2 level or smoke level is greater than fice warning box will come*/
-             if(status == "Active"){
-            JOptionPane.showMessageDialog(this, "Critical Situation", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }//GEN-LAST:event_btn_insertActionPerformed
-
     public void showTable1(){
          try {
             //Class.forName("com.mysql.jdbc.Driver");
             /*Conenciton*/
-            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");
             PreparedStatement pst = con.prepareStatement("select * from level");  
             ResultSet rs = pst.executeQuery();
             DefaultTableModel tm = (DefaultTableModel) JTableShowStatus.getModel();
@@ -339,20 +241,11 @@ public class Form_showDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JT_showCo2Lvl1;
-    private javax.swing.JTextField JT_showFloor;
-    private javax.swing.JTextField JT_showRoom;
-    private javax.swing.JTextField JT_showSmokeLvl1;
     private javax.swing.JTable JTableShowStatus;
-    private javax.swing.JButton btn_insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCo2Lvl1;
-    private javax.swing.JLabel lblmokeLvl1;
-    private javax.swing.JLabel lblshowFloor;
-    private javax.swing.JLabel lblshowRoom;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 package Form;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import rmi_login.Detail_Impl;
 
 /**
  *
@@ -30,13 +34,32 @@ public class Form_showDetailsForUsers extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         showTable();
+        
+        
+        Timer timer  = new Timer(0, null);
+        timer.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                  showTable();
+                 try {
+                     Detail_Impl di =  new Detail_Impl();
+                     di.sendEmail();
+                 } catch (RemoteException ex) {
+                     Logger.getLogger(Form_showDetails.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }
+        });
+       timer.setRepeats(true);
+       timer.setDelay(30000); // repeat every 30 sec
+       timer.start();
     }
     
     public void showTable(){
        try {
             //Class.forName("com.mysql.jdbc.Driver");
             /*Conenciton*/
-            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");
             PreparedStatement pst = con.prepareStatement("select * from level");  
             ResultSet rs = pst.executeQuery();
             DefaultTableModel tm = (DefaultTableModel) JTableShowStatus.getModel();

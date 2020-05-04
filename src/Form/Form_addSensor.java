@@ -362,7 +362,7 @@ public class Form_addSensor extends javax.swing.JFrame {
     public void showTable(){
         try {
             //Class.forName("com.mysql.jdbc.Driver");
-            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");
             PreparedStatement pst = con.prepareStatement("select * from monitoring");  
             ResultSet rs = pst.executeQuery();
             DefaultTableModel tm = (DefaultTableModel) JTableSensors.getModel();

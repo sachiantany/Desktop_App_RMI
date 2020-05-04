@@ -25,5 +25,7 @@ public interface Detail_Interface extends Remote{
     public String deleteSensor(int id) throws RemoteException;
     
     public String login(String username, String password) throws RemoteException;
+    
+    public void sendEmail()throws RemoteException ;
 
 }

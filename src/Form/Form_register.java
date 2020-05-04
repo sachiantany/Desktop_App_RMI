@@ -188,7 +188,7 @@ public class Form_register extends javax.swing.JFrame {
             String password = String.valueOf(JP_password.getPassword());
             String phone =  JT_phone.getText();
             String email = JT_email.getText();
-            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
+            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");    
             java.sql.Statement st = con.createStatement();
             String sql = "insert into admin (username,password,phone,email) value('"+username+"','"+password+"','"+phone+"','"+email+"')";
             st.executeUpdate(sql);   

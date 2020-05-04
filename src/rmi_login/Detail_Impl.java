@@ -10,6 +10,7 @@ import Form.Form_Dashboard;
 import Form.Form_Login;
 import Form.Form_showDetails;
 import Form.Form_showDetailsForUsers;
+import com.email.durgesh.Email;
 import com.mysql.cj.xdevapi.Result;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,7 +74,7 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
     public String addSensor(String sensorname,String floor, String room){
         try {
            // Class.forName("com.mysql.jdbc.Driver");
-            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
+            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");    
             java.sql.Statement st = con.createStatement();
           
            
@@ -93,7 +94,7 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
     public String updateSensor(int id, String sensorname,String floor, String room) {
          try {
             //Class.forName("com.mysql.jdbc.Driver");
-            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
+            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");    
             java.sql.Statement st = con.createStatement();
             String sql = "update monitoring set sensorname = '"+sensorname+"',floor = '"+floor+"',room = '"+room+"'where id ="+id;
             st.executeUpdate(sql);
@@ -109,7 +110,7 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
     public String deleteSensor(int id) {
         try {
             //Class.forName("com.mysql.jdbc.Driver");
-            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");
             java.sql.Statement st = con.createStatement();
             String sql = "delete from monitoring where id = "+id;            
             st.executeUpdate(sql);
@@ -127,7 +128,7 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
             PreparedStatement ps;
             ResultSet rs;
             
-            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
+            Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");    
             String sql = "select * from admin where username = ? AND password = ?";
              
             ps = con.prepareStatement(sql);
@@ -159,4 +160,30 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
             return "failed";
         }
     }   
+    
+    public void sendEmail() throws RemoteException {
+        try{
+        Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","1234");
+            PreparedStatement pst = con.prepareStatement("select * from level");  
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                Object obj[] = {rs.getInt("id"),rs.getString("Floor"),rs.getString("Room"),rs.getString("Co2"),rs.getString("Smoke"),rs.getString("Status")};
+                /*check the satus and smoke*/
+                if(Integer.parseInt(rs.getString("Co2")) > 5 || Integer.parseInt(rs.getString("Smoke")) > 5){
+                        String message  = "<h1>Fire Alarm Alert</h1> </br></br> <p>Sensors are on high alert. Please log on to the system and take actions...!</p>";
+
+                        Email email = new Email("mrmaadil99@gmail.com","adl117266");
+                        email.setFrom("mrmaadil99@gmail.com","Admin");
+                        email.setSubject("Fire Alarm Alert");
+                        email.setContent(message,"text/html");
+                        email.addRecipient("mohamedaadilrizam@gmail.com");
+                        email.send();
+                }   
+            }
+            
+        }catch(Exception ex){
+            
+        }
+    }
 }
