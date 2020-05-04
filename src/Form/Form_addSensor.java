@@ -28,7 +28,7 @@ public class Form_addSensor extends javax.swing.JFrame {
      */
     public Form_addSensor() {
         initComponents();
-        
+        showTable();
     }
 
     /**
@@ -158,6 +158,23 @@ public class Form_addSensor extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -195,39 +212,42 @@ public class Form_addSensor extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JT_floor, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JL_floor)
-                                .addComponent(JL_sensor)
-                                .addComponent(JL_room)
-                                .addComponent(JL_id))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JT_floor, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(37, 37, 37)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(JT_sensorname, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(JT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(JT_room, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btn_add)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JL_floor)
+                                        .addComponent(JL_sensor)
+                                        .addComponent(JL_room)
+                                        .addComponent(JL_id))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(37, 37, 37)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(JT_sensorname, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(JT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(JT_room, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(176, 176, 176)
-                                    .addComponent(btn_update)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_delete))))
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(btn_backToDashBoard)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btn_add)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(176, 176, 176)
+                                            .addComponent(btn_update)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_delete)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(btn_backToDashBoard)
+                        .addGap(214, 214, 214)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,8 +277,9 @@ public class Form_addSensor extends javax.swing.JFrame {
                 .addComponent(btn_backToDashBoard)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,20 +307,17 @@ public class Form_addSensor extends javax.swing.JFrame {
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         
         /*Add an action listner when insert btn is clicked*/
-        btn_add.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
                 try {
                     /*create a object using Details_Impl class*/
                       Detail_Impl di =  new Detail_Impl();
                       di.addSensor(JT_sensorname.getText(), JT_floor.getText(), JT_room.getText());
                       showTable();//call the method to show the db table 
                         //theQuery("insert into monitoring (sensorname,floor,room) value('"+JT_sensorname.getText()+"','"+JT_floor.getText()+"','"+JT_room.getText()+"')");
-		}catch(Exception e1) {				
+		}catch(Exception e1) 
+                {				
                     JOptionPane.showMessageDialog(null,e1.getMessage());
-				}
-            }
-        });
+		}
+            
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateMouseClicked
@@ -308,9 +326,7 @@ public class Form_addSensor extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         /*set action listner to update the details*/
-        btn_update.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+       
                try {
                    /*create an object using the Detail_Impl class*/
                     Detail_Impl di =  new Detail_Impl();
@@ -320,8 +336,7 @@ public class Form_addSensor extends javax.swing.JFrame {
 		}catch(Exception e1) {				
                     JOptionPane.showMessageDialog(null,e1.getMessage());
 				}
-            }
-        });
+         
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_deleteMouseClicked
@@ -331,9 +346,7 @@ public class Form_addSensor extends javax.swing.JFrame {
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
        
         /*set action listner to delete the details*/
-        btn_delete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        
                try {
                     /*create an object using the Detail_Impl class*/
                    Detail_Impl di =  new Detail_Impl();
@@ -343,8 +356,7 @@ public class Form_addSensor extends javax.swing.JFrame {
    		}catch(Exception e1) {
                     JOptionPane.showMessageDialog(null,e1.getMessage());
      		}
-            }
-        });
+         
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     public void showTable(){
@@ -360,7 +372,7 @@ public class Form_addSensor extends javax.swing.JFrame {
                 Object obj[] = {rs.getInt("id"),rs.getString("sensorname"),rs.getString("floor"),rs.getString("room")};
                 tm.addRow(obj);
             }
-            JOptionPane.showMessageDialog(null, "Success!");
+            
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);

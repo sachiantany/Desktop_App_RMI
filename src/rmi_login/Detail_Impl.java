@@ -9,6 +9,7 @@ package rmi_login;
 import Form.Form_Dashboard;
 import Form.Form_Login;
 import Form.Form_showDetails;
+import Form.Form_showDetailsForUsers;
 import com.mysql.cj.xdevapi.Result;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,6 +40,7 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
 
     public Detail_Impl() throws RemoteException {
 		super();
+      
 	}
     
     
@@ -66,14 +68,15 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
      * used to add data
    
      */
-    
-
+   
     @Override
     public String addSensor(String sensorname,String floor, String room){
         try {
            // Class.forName("com.mysql.jdbc.Driver");
             Connection con =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/fire_alarm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");    
             java.sql.Statement st = con.createStatement();
+          
+           
             String sql = "insert into monitoring (sensorname,floor,room) value('"+sensorname+"','"+floor+"','"+room+"')";
             st.executeUpdate(sql);   
             JOptionPane.showMessageDialog(null, "Insert Success!");
@@ -132,20 +135,21 @@ public class Detail_Impl extends UnicastRemoteObject implements Detail_Interface
             ps.setString(1, username);
             ps.setString(2, password);
             rs = ps.executeQuery();
-            if(rs.next()){
-                    JOptionPane.showMessageDialog(null, "Logged in Success!");
-                    Form_showDetails fshow = new Form_showDetails();
-                    fshow.setVisible(true);
-                    fshow.pack();
-                    fshow.setLocationRelativeTo(null);
-                    fshow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-            }else if(username.equals("admin") && password.equals("admin")){
+            if( username.equals("admin") && password.equals("admin"))
+            {
                     JOptionPane.showMessageDialog(null, "Admin Logged in Success!");
                     Form_Dashboard fdash = new Form_Dashboard();
                     fdash.setVisible(true);
                     fdash.pack();
                     fdash.setLocationRelativeTo(null);
                     fdash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+         }else if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Logged in Success!");
+                    Form_showDetailsForUsers fshow = new Form_showDetailsForUsers();
+                    fshow.setVisible(true);
+                    fshow.pack();
+                    fshow.setLocationRelativeTo(null);
+                    fshow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }else {
                     JOptionPane.showMessageDialog(null, "Incorrect Username and/or Password!");
             }
